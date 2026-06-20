@@ -1,0 +1,10 @@
+resource-pack:
+  enabled: true
+  send-on-join: true
+  force: false
+  server:
+    enabled: true
+    host: "0.0.0.0"
+    port: 8765
+    path: "/packitems.zip"
+    public-url: ""

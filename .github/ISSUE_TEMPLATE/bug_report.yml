@@ -1,0 +1,41 @@
+name: Bug report
+description: Report a problem with PackItems
+title: "[BUG] "
+labels: [bug]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: What happened and what you expected.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Run /packitems ...
+        2. ...
+        3. Error occurs
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / stacktrace
+      render: shell
+
+  - type: input
+    id: version
+    attributes:
+      label: PackItems version
+      placeholder: 1.0.0
+
+  - type: input
+    id: mcversion
+    attributes:
+      label: Minecraft version
+      placeholder: 1.21.x

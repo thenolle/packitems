@@ -1,0 +1,35 @@
+package com.nolly.mc.packitems.action
+
+enum class Trigger {
+	// Interactions
+	RIGHT_CLICK_AIR,
+	RIGHT_CLICK_BLOCK,
+	LEFT_CLICK_AIR,
+	LEFT_CLICK_BLOCK,
+
+	SHIFT_RIGHT_CLICK_AIR,
+	SHIFT_RIGHT_CLICK_BLOCK,
+	SHIFT_LEFT_CLICK_AIR,
+	SHIFT_LEFT_CLICK_BLOCK,
+
+	// Combat / entity
+	HIT_ENTITY,
+	CRIT_ENTITY,
+	PROJECTILE_HIT,
+	BOW_SHOOT,
+	CROSSBOW_SHOOT,
+	TRIDENT_THROW,
+
+	// Movement / state
+	JUMP,
+	SNEAK_START,
+	SNEAK_STOP,
+	SWAP_HAND,
+	DROP_ITEM,
+
+	// World interaction
+	BLOCK_BREAK,
+	BLOCK_PLACE,
+	FALL_DAMAGE,
+	DEATH
+}

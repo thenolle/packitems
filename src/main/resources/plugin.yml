@@ -1,0 +1,37 @@
+name: PackItems
+version: 1.0.0
+main: com.nolly.mc.packitems.PackItems
+api-version: "1.21"
+depend:
+  - TextAPI
+
+commands:
+  packitems:
+    description: PackItems main command
+    usage: /packitems <reload|rebuild|list|give>
+    permission: packitems.admin
+
+permissions:
+  packitems.admin:
+    description: Access to all PackItems commands
+    default: op
+    children:
+      packitems.reload: true
+      packitems.rebuild: true
+      packitems.list: true
+      packitems.give: true
+  packitems.reload:
+    description: Reload items
+    default: op
+  packitems.rebuild:
+    description: Rebuild resource pack
+    default: op
+  packitems.list:
+    description: List loaded items
+    default: op
+  packitems.give:
+    description: Give a pack item to a player
+    default: op
+  packitems.use:
+    description: Parent permission for using pack items
+    default: true

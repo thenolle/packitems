@@ -1,5 +1,5 @@
 name: PackItems
-version: 1.0.0
+version: 1.0.1
 main: com.nolly.mc.packitems.PackItems
 api-version: "1.21"
 depend:

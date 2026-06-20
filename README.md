@@ -47,7 +47,7 @@ mvn clean package
 Place the generated jar inside:
 
 ```text
-/plugins/PackItems-1.0.0.jar
+/plugins/PackItems-1.0.1.jar
 
 ```
 

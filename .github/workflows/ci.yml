@@ -28,6 +28,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven
 
+      - name: Download and install TextAPI locally
+        run: |
+          curl -L https://github.com/thenolle/textapi/releases/download/v1.0.6/textapi-1.0.6.jar \
+            -o textapi.jar
+          mvn install:install-file \
+            -Dfile=textapi.jar \
+            -DgroupId=com.nolly.mc \
+            -DartifactId=textapi \
+            -Dversion=1.0.6 \
+            -Dpackaging=jar
+
       - name: Build with Maven
         run: mvn -B clean package
 

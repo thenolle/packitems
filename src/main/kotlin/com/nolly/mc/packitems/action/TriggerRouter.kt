@@ -1,6 +1,7 @@
 package com.nolly.mc.packitems.action
 
 import com.nolly.mc.packitems.PackItems
+import com.nolly.mc.packitems.PackItemsAPI
 import com.nolly.mc.packitems.item.PackItemUtil
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
@@ -24,8 +25,8 @@ import org.bukkit.event.block.Action as ActionMC
 
 class TriggerRouter(private val plugin: PackItems) : Listener {
 	private val idKey = NamespacedKey(plugin, "id")
-
 	private val lastDispatch = mutableMapOf<String, Long>()
+	private val wasOnGround = mutableSetOf<UUID>()
 
 	private fun debounceKey(player: Player, trigger: Trigger) = "${player.uniqueId}:${trigger.name}"
 
@@ -82,8 +83,6 @@ class TriggerRouter(private val plugin: PackItems) : Listener {
 		val bowItem = event.bow ?: return
 		dispatch(event, player, trigger, overrideItem = bowItem)
 	}
-
-	private val wasOnGround = mutableSetOf<UUID>()
 
 	@EventHandler(priority = EventPriority.MONITOR)
 	fun onMove(event: PlayerMoveEvent) {
@@ -183,16 +182,16 @@ class TriggerRouter(private val plugin: PackItems) : Listener {
 		} else return
 		val packItem = plugin.registry.get(id ?: return) ?: return
 		if (!player.hasPermission("packitems.use.$id") && !player.hasPermission("packitems.use.*")) return
-		plugin.actionDispatcher.dispatch(
-			ActionContext(
-				event = event,
-				player = player,
-				item = packItem,
-				handItem = handItem,
-				block = block,
-				entity = entity,
-				trigger = trigger
-			)
+		val context = ActionContext(
+			event = event,
+			player = player,
+			item = packItem,
+			handItem = handItem,
+			block = block,
+			entity = entity,
+			trigger = trigger
 		)
+		PackItemsAPI.dispatchTriggerHooks(context)
+		plugin.actionDispatcher.dispatch(context)
 	}
 }

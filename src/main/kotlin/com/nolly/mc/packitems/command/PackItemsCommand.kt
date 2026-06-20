@@ -1,6 +1,8 @@
 package com.nolly.mc.packitems.command
 
 import com.nolly.mc.packitems.PackItems
+import com.nolly.mc.packitems.PackItemsAPI
+import com.nolly.mc.packitems.action.ActionRegistry
 import com.nolly.mc.packitems.util.Text
 import org.bukkit.command.*
 
@@ -46,7 +48,10 @@ class PackItemsCommand(private val plugin: PackItems) : CommandExecutor, TabComp
 
 	private fun handleReload(sender: CommandSender) {
 		plugin.reloadConfig()
+		PackItemsAPI.reset()
 		plugin.registry.unregisterAll()
+		ActionRegistry.clearCustom()
+		ActionRegistry.registerAll()
 		plugin.loader.loadAll()
 		Text.send(sender, "<green>Items reloaded.</green>")
 	}

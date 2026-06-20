@@ -7,6 +7,10 @@ class PackItemRegistry {
 		items[item.id.lowercase()] = item
 	}
 
+	fun unregister(id: String): PackItem? {
+		return items.remove(id.lowercase())
+	}
+
 	fun unregisterAll() {
 		items.clear()
 	}

@@ -7,6 +7,14 @@ object ActionParser {
 		registry[type.lowercase()] = factory
 	}
 
+	fun unregister(type: String): Boolean {
+		return registry.remove(type.lowercase()) != null
+	}
+
+	fun clear() {
+		registry.clear()
+	}
+
 	fun parse(list: List<Map<*, *>>): List<Action> {
 		val result = mutableListOf<Action>()
 		for (map in list) {

@@ -41,6 +41,7 @@ class PackItems : JavaPlugin() {
 		packManager = ResourcePackManager(this, registry)
 		packManager.rebuild()
 		packManager.startServer()
+		PackItemsAPI.init(this)
 		val command = PackItemsCommand(this)
 		getCommand("packitems")?.setExecutor(command)
 		getCommand("packitems")?.tabCompleter = command
@@ -51,6 +52,7 @@ class PackItems : JavaPlugin() {
 	}
 
 	override fun onDisable() {
+		PackItemsAPI.reset()
 		packManager.stopServer()
 		logger.info("PackItems disabled.")
 	}

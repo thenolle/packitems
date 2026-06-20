@@ -260,4 +260,13 @@ object ActionRegistry {
 			}
 		}
 	}
+
+	fun unregister(type: String): Boolean {
+		return ActionParser.unregister(type)
+	}
+
+	fun clearCustom() {
+		ActionParser.clear()
+		registerAll()
+	}
 }
